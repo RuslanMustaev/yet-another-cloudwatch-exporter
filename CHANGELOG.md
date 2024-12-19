@@ -28,17 +28,84 @@ Refactoring:
 
 **Full Changelog**: https://github.com/...
 
+# 0.62.0
+
+**Important news and breaking changes**
+
+* As of November 2024, YACE is part of prometheus-community. Read more about it in these announcement posts:
+- https://prometheus.io/blog/2024/11/19/yace-joining-prometheus-community/
+- https://grafana.com/blog/2024/11/19/yace-moves-to-prometheus-community/
+
+**Bugfixes and features**
+
+Features:
+* Add ContainerInsights service by @JetSquirrel
+* Add AWS/Scheduler and AWS/ECR services by @andriikushch
+* Add AWS/VpcLattice service by @greymd
+* Add AWS/QuickSight service by @choppedpork
+* Add AWS/Timestream service by @andriikushch
+* Add Network Manager / Cloud WAN support by @kylehodgetts
+* RDS: include RDS Proxy metrics within the RDS namespace by @vitaliyf
+* Mediapackage: include mediapackagev2 namespace by @henrylaiBrightcove
+
+Bugs:
+* Add parentheses to sanitize list to prevent invalid metric name generation by @nixargh
+
+Docs:
+* Review and update supported services in README by @cristiangreco
+* Mention support for AWS/MediaPackage by @prathamesh-sonpatki
+* Update README and MAINTAINERS files to mention the move to prometheus-community by @cristiangreco
+
+Refactoring:
+* Start a unified scraper by @kgeckhart
+* Refactor prom metric creation by @kgeckhart
+* Update for Prometheus Community by @SuperQ
+* Update Docker build by @SuperQ
+* Fix linting issues detected by golangci-lint 1.60.3 by @cristiangreco
+* Update build tools and CI to Go 1.23 by @cristiangreco
+
+**Dependencies**
+
+* Bump actions/checkout from 4.2.0 to 4.2.2
+* Bump alpine from 3.20.1 to 3.20.3
+* Bump github.com/aws/aws-sdk-go from 1.54.7 to 1.55.5
+* Bump github.com/aws/smithy-go from 1.22.0 to 1.22.1
+* Bump github.com/prometheus/client_golang from 1.19.1 to 1.20.5
+* Bump github.com/prometheus/common from 0.54.0 to 0.60.1
+* Bump github.com/stretchr/testify from 1.9.0 to 1.10.0
+* Bump github.com/urfave/cli/v2 from 2.27.2 to 2.27.5
+* Bump golang from 1.22 to 1.23
+* Bump golang.org/x/sync from 0.7.0 to 0.9.0
+* Bump golangci/golangci-lint-action from 6.0.1 to 6.1.1
+* Bump grafana/regexp to `20240607082908-2cb410fa05da`
+* Bump the aws-sdk-v2 group
+
+**New contributors**
+
+* @prathamesh-sonpatki made their first contribution in https://github.com/prometheus-community/yet-another-cloudwatch-exporter/pull/1465
+* @JetSquirrel made their first contribution in https://github.com/prometheus-community/yet-another-cloudwatch-exporter/pull/1463
+* @greymd made their first contribution in https://github.com/prometheus-community/yet-another-cloudwatch-exporter/pull/1506
+* @choppedpork made their first contribution in https://github.com/prometheus-community/yet-another-cloudwatch-exporter/pull/1477
+* @SuperQ made their first contribution in https://github.com/prometheus-community/yet-another-cloudwatch-exporter/pull/1568
+* @prombot made their first contribution in https://github.com/prometheus-community/yet-another-cloudwatch-exporter/pull/1570
+* @nixargh made their first contribution in https://github.com/prometheus-community/yet-another-cloudwatch-exporter/pull/1563
+* @kylehodgetts made their first contribution in https://github.com/prometheus-community/yet-another-cloudwatch-exporter/pull/1580
+* @vitaliyf made their first contribution in https://github.com/prometheus-community/yet-another-cloudwatch-exporter/pull/1501
+* @henrylaiBrightcove made their first contribution in https://github.com/prometheus-community/yet-another-cloudwatch-exporter/pull/1544
+
+**Full Changelog**: https://github.com/prometheus-community/yet-another-cloudwatch-exporter/compare/v0.61.2...v0.62.0
+
 # 0.61.2
 
 Bugfix release to update the `goreleaser` configuration (again!), please refer to the release notes for `0.61.0` for actual code changes.
 
-https://github.com/nerdswords/yet-another-cloudwatch-exporter/releases/tag/v0.61.0
+https://github.com/prometheus-community/yet-another-cloudwatch-exporter/releases/tag/v0.61.0
 
 # 0.61.1
 
 Bugfix release to update the `goreleaser` configuration, please refer to the release notes for `0.61.0` for actual code changes.
 
-https://github.com/nerdswords/yet-another-cloudwatch-exporter/releases/tag/v0.61.0
+https://github.com/prometheus-community/yet-another-cloudwatch-exporter/releases/tag/v0.61.0
 
 # 0.61.0
 
@@ -71,10 +138,10 @@ Refactoring:
 
 **New contributors**
 
-* @luismy made their first contribution in https://github.com/nerdswords/yet-another-cloudwatch-exporter/pull/1341
-* @fabiiw05 made their first contribution in https://github.com/nerdswords/yet-another-cloudwatch-exporter/pull/1433
+* @luismy made their first contribution in https://github.com/prometheus-community/yet-another-cloudwatch-exporter/pull/1341
+* @fabiiw05 made their first contribution in https://github.com/prometheus-community/yet-another-cloudwatch-exporter/pull/1433
 
-**Full Changelog**: https://github.com/nerdswords/yet-another-cloudwatch-exporter/compare/v0.60.0...v0.61.0
+**Full Changelog**: https://github.com/prometheus-community/yet-another-cloudwatch-exporter/compare/v0.60.0...v0.61.0
 
 # 0.60.0
 
@@ -109,15 +176,15 @@ Refactoring:
 * @Roberdvs made their first contribution
 * @hexionas made their first contribution
 
-**Full Changelog**: https://github.com/nerdswords/yet-another-cloudwatch-exporter/compare/v0.59.0...v0.60.0
+**Full Changelog**: https://github.com/prometheus-community/yet-another-cloudwatch-exporter/compare/v0.59.0...v0.60.0
 
 # 0.59.0
 
 **Important news and breaking changes**
 
 This release brings a bunch of breaking changes:
-* Setting `roundingPeriod` for discovery jobs is deprecated, a warning will be logged at startup. This is being deprecated in favor of always using the metric period. The implementation for `roundingPeriod` can result in inconsistent Start and EndTime between batches. This negates its intent to ensure Start and EndTimes align with the metric period for [CloudWatch best practices](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricData.html). This has the potential to produce data which will look inaccurate when compared against CloudWatch itself driving a lot of confusion. See https://github.com/nerdswords/yet-another-cloudwatch-exporter/issues/1290 for further context.
-* Setting `delay` at the metric level is deprecated, a warning will be logged at startup. This `delay` configuration has existed for a long time but was never utilized. Deprecating it and eventually removing it was chosen to simplify the configuration. See https://github.com/nerdswords/yet-another-cloudwatch-exporter/issues/1290#issuecomment-1948904375 for further context.
+* Setting `roundingPeriod` for discovery jobs is deprecated, a warning will be logged at startup. This is being deprecated in favor of always using the metric period. The implementation for `roundingPeriod` can result in inconsistent Start and EndTime between batches. This negates its intent to ensure Start and EndTimes align with the metric period for [CloudWatch best practices](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricData.html). This has the potential to produce data which will look inaccurate when compared against CloudWatch itself driving a lot of confusion. See https://github.com/prometheus-community/yet-another-cloudwatch-exporter/issues/1290 for further context.
+* Setting `delay` at the metric level is deprecated, a warning will be logged at startup. This `delay` configuration has existed for a long time but was never utilized. Deprecating it and eventually removing it was chosen to simplify the configuration. See https://github.com/prometheus-community/yet-another-cloudwatch-exporter/issues/1290#issuecomment-1948904375 for further context.
 * For discovery jobs, the `type` field and the keys of `exportedTagsOnMetrics` must be the AWS namespace rather than the alias (the README contains an up-to-date list of namespaces). Aliases are not allowed anymore. An error will be thrown at startup in an invalid namespace or an alias is used.
 * Some metric names have been changed to avoid duplicating the namespace. This includes:
   - `aws_es_esreporting_failed_request_sys_err_count` is `aws_es_reporting_failed_request_sys_err_count`
@@ -153,10 +220,10 @@ Refactoring:
 
 **New contributors**
 
-* @taraspos made their first contribution in https://github.com/nerdswords/yet-another-cloudwatch-exporter/pull/1330
-* @HristoStoyanovYotpo made their first contribution in https://github.com/nerdswords/yet-another-cloudwatch-exporter/pull/1359
+* @taraspos made their first contribution in https://github.com/prometheus-community/yet-another-cloudwatch-exporter/pull/1330
+* @HristoStoyanovYotpo made their first contribution in https://github.com/prometheus-community/yet-another-cloudwatch-exporter/pull/1359
 
-**Full Changelog**: https://github.com/nerdswords/yet-another-cloudwatch-exporter/compare/v0.58.0...v0.59.0
+**Full Changelog**: https://github.com/prometheus-community/yet-another-cloudwatch-exporter/compare/v0.58.0...v0.59.0
 
 # 0.58.0
 
@@ -183,9 +250,9 @@ Refactoring:
 
 **New contributors**
 
-* @tristanburgess made their first contribution in https://github.com/nerdswords/yet-another-cloudwatch-exporter/pull/1351
+* @tristanburgess made their first contribution in https://github.com/prometheus-community/yet-another-cloudwatch-exporter/pull/1351
 
-**Full Changelog**: https://github.com/nerdswords/yet-another-cloudwatch-exporter/compare/v0.57.1...v0.58.0
+**Full Changelog**: https://github.com/prometheus-community/yet-another-cloudwatch-exporter/compare/v0.57.1...v0.58.0
 
 
 # 0.57.1
@@ -208,7 +275,7 @@ Bugs:
 * Bump github.com/stretchr/testify from 1.8.4 to 1.9.0
 * Bump the aws-sdk-v2 group
 
-**Full Changelog**: https://github.com/nerdswords/yet-another-cloudwatch-exporter/compare/v0.57.0...v0.57.1
+**Full Changelog**: https://github.com/prometheus-community/yet-another-cloudwatch-exporter/compare/v0.57.0...v0.57.1
 
 # v0.57.0
 
@@ -250,11 +317,11 @@ Refactoring:
 
 **New contributors**
 
-* @vainiusd made their first contribution in https://github.com/nerdswords/yet-another-cloudwatch-exporter/pull/1093
-* @daharon made their first contribution in https://github.com/nerdswords/yet-another-cloudwatch-exporter/pull/1306
-* @keyolk made their first contribution in https://github.com/nerdswords/yet-another-cloudwatch-exporter/pull/939
+* @vainiusd made their first contribution in https://github.com/prometheus-community/yet-another-cloudwatch-exporter/pull/1093
+* @daharon made their first contribution in https://github.com/prometheus-community/yet-another-cloudwatch-exporter/pull/1306
+* @keyolk made their first contribution in https://github.com/prometheus-community/yet-another-cloudwatch-exporter/pull/939
 
-**Full Changelog**: https://github.com/nerdswords/yet-another-cloudwatch-exporter/compare/v0.56.0...v0.57.0
+**Full Changelog**: https://github.com/prometheus-community/yet-another-cloudwatch-exporter/compare/v0.56.0...v0.57.0
 
 # v0.56.0
 
@@ -306,7 +373,7 @@ Refactoring:
 * @wkneewalden
 * @pkubicsek-sb
 
-**Full Changelog**: https://github.com/nerdswords/yet-another-cloudwatch-exporter/compare/v0.55.0...v0.56.0
+**Full Changelog**: https://github.com/prometheus-community/yet-another-cloudwatch-exporter/compare/v0.55.0...v0.56.0
 
 # v0.55.0
 
@@ -349,7 +416,7 @@ Refactoring:
 * @hc2p
 * @alexandre-alvarengazh
 
-**Full Changelog**: https://github.com/nerdswords/yet-another-cloudwatch-exporter/compare/v0.54.1...v0.55.0
+**Full Changelog**: https://github.com/prometheus-community/yet-another-cloudwatch-exporter/compare/v0.54.1...v0.55.0
 
 
 # v0.54.1
@@ -364,7 +431,7 @@ Bugs:
 * Bump golangci/golangci-lint-action from 3.6.0 to 3.7.0
 * Bump github.com/aws/aws-sdk-go from 1.44.327 to 1.44.328
 
-**Full Changelog**: https://github.com/nerdswords/yet-another-cloudwatch-exporter/compare/v0.54.0...v0.54.1
+**Full Changelog**: https://github.com/prometheus-community/yet-another-cloudwatch-exporter/compare/v0.54.0...v0.54.1
 
 # v0.54.0
 
@@ -407,7 +474,7 @@ Updates:
 * Bump github.com/aws/smithy-go from 1.13.5 to 1.14.2
 * Bump github.com/aws/aws-sdk-go and aws-sdk-go-v2 to latest versions
 
-**Full Changelog**: https://github.com/nerdswords/yet-another-cloudwatch-exporter/compare/v0.53.0...v0.54.0
+**Full Changelog**: https://github.com/prometheus-community/yet-another-cloudwatch-exporter/compare/v0.53.0...v0.54.0
 
 # v0.53.0
 
@@ -433,7 +500,7 @@ Bugs:
 * Bump github.com/prometheus/common from 0.43.0 to 0.44.0
 * Bump github.com/urfave/cli/v2 from 2.25.6 to 2.25.7
 
-**Full Changelog**: https://github.com/nerdswords/yet-another-cloudwatch-exporter/compare/v0.52.0...v0.53.0
+**Full Changelog**: https://github.com/prometheus-community/yet-another-cloudwatch-exporter/compare/v0.52.0...v0.53.0
 
 # v0.52.0
 
@@ -499,7 +566,7 @@ Updates:
 * Bump golang.org/x/sync from 0.1.0 to 0.3.0
 * Bump golangci/golangci-lint-action from 3.4.0 to 3.6.0
 
-**Full Changelog**: https://github.com/nerdswords/yet-another-cloudwatch-exporter/compare/v0.51.0...v0.52.0
+**Full Changelog**: https://github.com/prometheus-community/yet-another-cloudwatch-exporter/compare/v0.51.0...v0.52.0
 
 # v0.51.0
 
@@ -540,7 +607,7 @@ Refactoring:
 * Bump github.com/aws/aws-sdk-go from 1.44.235 to 1.44.249
 * Bump github.com/prometheus/common from 0.41.0 to 0.42.0
 
-**Full Changelog**: https://github.com/nerdswords/yet-another-cloudwatch-exporter/compare/v0.50.0...v0.51.0
+**Full Changelog**: https://github.com/prometheus-community/yet-another-cloudwatch-exporter/compare/v0.50.0...v0.51.0
 
 # v0.50.0
 
@@ -571,7 +638,7 @@ Refactoring:
 * Bump github.com/aws/aws-sdk-go from 1.44.215 to 1.44.235
 * Bump github.com/urfave/cli/v2 from 2.25.0 to 2.25.1
 
-**Full Changelog**: https://github.com/nerdswords/yet-another-cloudwatch-exporter/compare/v0.49.2...v0.50.0
+**Full Changelog**: https://github.com/prometheus-community/yet-another-cloudwatch-exporter/compare/v0.49.2...v0.50.0
 
 # v0.49.2
 
@@ -616,14 +683,14 @@ Internal refactoring:
 * Bump github.com/urfave/cli/v2 from 2.24.3 to 2.25.0
 * Bump golang.org/x/sync from 0.0.0-20220722155255-886fb9371eb4 to 0.1.0
 
-**Full Changelog**: https://github.com/nerdswords/yet-another-cloudwatch-exporter/compare/v0.48.0-alpha...v0.49.0
+**Full Changelog**: https://github.com/prometheus-community/yet-another-cloudwatch-exporter/compare/v0.48.0-alpha...v0.49.0
 
 # v0.48.0-alpha
 
 **Bugfixes and features**:
 * Revert "Publish helm chart before releasing binaries".
 
-**Full Changelog**: https://github.com/nerdswords/yet-another-cloudwatch-exporter/compare/v0.47.0-alpha...v0.48.0-alpha
+**Full Changelog**: https://github.com/prometheus-community/yet-another-cloudwatch-exporter/compare/v0.47.0-alpha...v0.48.0-alpha
 
 # v0.47.0-alpha
 
@@ -638,7 +705,7 @@ Internal refactoring:
 * Bump github.com/aws/aws-sdk-go from 1.44.192 to 1.44.194
 * Bump github.com/urfave/cli/v2 from 2.24.2 to 2.24.3
 
-**Full Changelog**: https://github.com/nerdswords/yet-another-cloudwatch-exporter/compare/v0.46.0-alpha...v0.47.0-alpha
+**Full Changelog**: https://github.com/prometheus-community/yet-another-cloudwatch-exporter/compare/v0.46.0-alpha...v0.47.0-alpha
 
 # 0.46.0-alpha
 
@@ -653,7 +720,7 @@ Internal refactoring:
 **Dependencies**:
 * Bump github.com/aws/aws-sdk-go from 1.44.189 to 1.44.192
 
-**Full Changelog**: https://github.com/nerdswords/yet-another-cloudwatch-exporter/compare/helm-chart-0.11.0...v0.46.0-alpha
+**Full Changelog**: https://github.com/prometheus-community/yet-another-cloudwatch-exporter/compare/helm-chart-0.11.0...v0.46.0-alpha
 
 # 0.45.0-alpha
 
@@ -674,7 +741,7 @@ Internal refactoring:
 * Bump github.com/urfave/cli/v2 from 2.23.7 to 2.24.2
 * Bump golangci/golangci-lint-action from 3.3.1 to 3.4.0
 
-**Full Changelog**: https://github.com/nerdswords/yet-another-cloudwatch-exporter/compare/v0.44.0-alpha...v0.45.0-alpha
+**Full Changelog**: https://github.com/prometheus-community/yet-another-cloudwatch-exporter/compare/v0.44.0-alpha...v0.45.0-alpha
 
 # 0.44.0-alpha
 
@@ -702,7 +769,7 @@ Internal refactoring:
 * Bump helm/chart-releaser-action from 1.4.1 to 1.5.0
 * Bump helm/kind-action from 1.2.0 to 1.5.0
 
-**Full Changelog**: https://github.com/nerdswords/yet-another-cloudwatch-exporter/compare/v0.43.0-alpha...v0.44.0-alpha
+**Full Changelog**: https://github.com/prometheus-community/yet-another-cloudwatch-exporter/compare/v0.43.0-alpha...v0.44.0-alpha
 
 # 0.43.0-alpha
 
